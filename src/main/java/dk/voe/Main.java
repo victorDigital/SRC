@@ -453,7 +453,7 @@ class FractalWindow extends Window {
                 int n = 0;
                 while (n < i) {
                     double aa = a * a - b * b;
-                    double bb = 2 * a * b;
+                    double bb = 2.0 * a * b;
                     a = aa + ca;
                     b = bb + cb;
                     if (abs((double) (a + b)) > 16) {

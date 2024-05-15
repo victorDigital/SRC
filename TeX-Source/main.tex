@@ -42,8 +42,8 @@ style=apa,
 \renewcommand{\contentsname}{Indholdsfortegnelse}
 
 \title{Studieretnings Case - Fraktaler}
-\author{Victor Østergaard Nielsen, 2di}
-\date{Maj 2024}
+\author{Victor Østergaard Nielsen, 2di - HCØ Lyngby}
+\date{d. 15 Maj 2024 | Matematik A og Programmering B}
 
 \setcounter{figure}{0}
 \renewcommand{\figurename}{Figur}
@@ -62,14 +62,10 @@ style=apa,
 \end{figure}
 
 \newpage
-
-\section*{Tro- og loveerklæring}
-Jeg bekræfter herved med min underskrift, at denne studieretnings case er udarbejdet af mig. Jeg har ikke anvendt tidligere bedømt arbejde uden henvisning hertil, og opgaven er udfærdiget uden anvendelse af uretmæssig hjælp og uden brug af hjælpemidler, der ikke har været tilladt i forbindelse med projektet.\\\\\\
-%
-Victor Østergaard Nielsen d. \hrulefill\\\\\\
-%
-Underskrift: \hrulefill\\
-
+\tableofcontents
+\newpage
+\section{Indledning}
+Denne opgave har til formål at designe og udvikle et matematisk hjælpeværktøj, der sigter mod at styrke læringen i gymnasiet. Hjælpeværktøjet skal realiseres som en applikation til en computer. Gennem denne proces vil fokus ligge på at skabe et intuitivt og effektivt værktøj. Denne opgave vil fokuserer på matematiske fraktaler, det komplekse plan og fraktale dimension. 
 \newpage
 
 \section*{Opgavens Problemstilling: Matematik værktøj til hjælp af forståelse af fraktaler}
@@ -95,8 +91,6 @@ Perspektivering
     \item kystlinje
 \end{itemize}
 
-\newpage
-\tableofcontents
 \newpage
 
 \section{Hvad er fraktaler}
@@ -354,7 +348,7 @@ På den måde holdes funktionaliteten inde i \texttt{LayoutManager} klassen som 
 \includegraphics[width=6cm]{dimansion.png}
 \caption{Billede processering til box-counting}\label{wrap-fig:idk}
 \end{wrapfigure}
-Formlen for Minkowski–Bouligand dimension: $$D = \lim_{\epsilon\to0} \frac{\log(\text{N}(\epsilon)}{\log(\frac{1}{\epsilon})}$$ ikke giver mening i praksis, da vores boksstørrelse skal tilnærme sig 0 og derfor vil udregningen tage uendelig lang tid. vi bliver altså også har nåd til at lave en tilnærmelse, ligesom alt andet i "fraktal-land". Dette gøres ved brug af lineær regression. i denne regression defineres et koordinat system hvor x-aksen er lig $\log(\frac{1}{\epsilon})$ og y-aksen er lig $\log(\text{N}(\epsilon)$. i dette tilfælde er $\epsilon$ lig nedskaleringsfaktoren af billedet så: $\frac{\text{startBilledstørrelse}}{\text{nedskaleringsfaktoren}}=\text{billedstørrelse}$ og $\text{N}(\epsilon)$ er mægnden af hvide pixels i billedet. Men vi kan ikke bruge det oprindelige billed da formlen kun virker med kanten af fraktalen, af den grund skal fraktal billedet gennem en billede processerings algoritme, på billedt til højdre ses de 2 skridt i denne process, først skal alt hvad der ikke er sort sættet til hvidt, derefter skal der køres en edge detection algoritme på billedet, nu kan de hvide pixels optælles og derefter kan en lineær regression udføres hvor hældningskoefficienten er ca. lig $D$. Herunder analyseres programmets implementation at de 2 lag i programmets billede processerings algoritme samt programmets implementation at lineær regression.
+Formlen for Minkowski–Bouligand dimension: $$D = \lim_{\epsilon\to0} \frac{\log(\text{N}(\epsilon)}{\log(\frac{1}{\epsilon})}$$ Ikke giver mening i praksis, da vores boksstørrelse skal tilnærme sig 0 og derfor vil udregningen tage uendelig lang tid. vi bliver altså også har nåd til at lave en tilnærmelse, ligesom alt andet i "fraktal-land". Dette gøres ved brug af lineær regression. i denne regression defineres et koordinat system hvor x-aksen er lig $\log(\frac{1}{\epsilon})$ og y-aksen er lig $\log(\text{N}(\epsilon)$. i dette tilfælde er $\epsilon$ lig nedskaleringsfaktoren af billedet så: $\frac{\text{startBilledstørrelse}}{\text{nedskaleringsfaktoren}}=\text{billedstørrelse}$ og $\text{N}(\epsilon)$ er mægnden af hvide pixels i billedet. Men vi kan ikke bruge det oprindelige billed da formlen kun virker med kanten af fraktalen, af den grund skal fraktal billedet gennem en billede processerings algoritme, på billedt til højdre ses de 2 skridt i denne process, først skal alt hvad der ikke er sort sættet til hvidt, derefter skal der køres en edge detection algoritme på billedet, nu kan de hvide pixels optælles og derefter kan en lineær regression udføres hvor hældningskoefficienten er ca. lig $D$. Herunder analyseres programmets implementation at de 2 lag i programmets billede processerings algoritme samt programmets implementation at lineær regression.
 \newpage
 \subsection{Sort-hvid filter}
 \lstinputlisting[language=Java]{twotone.java}
@@ -406,7 +400,7 @@ Nu er løsningen af $a$ og $b$ i mindste kvadraters metode bevist
 \section{Kystlinjer}
 Lidt ligesom fraktaler har kystlinjer også den egenskab at de har uendelig detalje. Hvis du kigger med en detalje på 1 meter vil du få en anden længde end hvis du kigger ned til 1 millimeter detalje, på denne måde kan vi også her bruge box-counting til at tilnærme en fraktal dimension. f.eks. er kystlinjen af Norges lig ca. 1,31. \parencite{article} Men uanset hvor langt du zoomer ind vil der altid være mere detalje, dog vil du i den virkelige verden være begrenset af atomer, bøjer og mange andre ting.
 \section{Opsamling}
-Opgavens problemformulering lød således: \textit{Hvordan kan fraktaler anvendes i programmering og matematik, og hvordan kan forståelsen af disse komplekse systemer øges ved hjælp af visuelle værktøjer} For at løse denne problemformulering blev der lavet et visuelt udforsknings værktøj af mandelbrotmængden i reeltid, der har til formål at øge forståelsen af disse komplekse matematiske fænomener. Der blev også udforsket og implementeret en måde at udregne fraktal dimension af mandelbrotmængden ved at kigge på forskellige størrelser af billeder. Mens der naturligvis er plads til forbedring så er programmet bøde funktionelt og intuitivt som det er nu.
+Opgavens problemformulering lød således: \textit{Hvordan kan fraktaler anvendes i programmering og matematik, og hvordan kan forståelsen af disse komplekse systemer øges ved hjælp af visuelle værktøjer} For at løse denne problemformulering blev der lavet et visuelt udforsknings værktøj af mandelbrotmængden i reeltid, der har til formål at øge forståelsen af disse komplekse matematiske fænomener. Der blev også udforsket og implementeret en måde at udregne fraktal dimension af mandelbrotmængden ved at kigge på forskellige størrelser af billeder. Mens der naturligvis er plads til forbedring så er programmet både funktionelt og intuitivt som det er nu.
 \newpage
 \printbibliography
 \newpage
